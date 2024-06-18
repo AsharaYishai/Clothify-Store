@@ -9,15 +9,15 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LodeFormContent" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.DashboardFormController">
+<AnchorPane fx:id="LodeFormContent" prefHeight="528.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.DashboardFormController">
    <children>
-      <ImageView fitHeight="405.0" fitWidth="607.0">
+      <ImageView fitHeight="528.0" fitWidth="902.0">
          <image>
             <Image url="@../img/bg_img.jpg" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="285.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="322.0" />
-      <JFXButton layoutX="366.0" layoutY="44.0" onAction="#btnOrderOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order" textOverrun="CLIP">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="221.0" layoutX="38.0" layoutY="294.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="849.0" />
+      <JFXButton layoutX="58.0" layoutY="380.0" onAction="#btnOrderOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order" textOverrun="CLIP">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -25,22 +25,22 @@
             <Cursor fx:constant="MOVE" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="366.0" layoutY="123.0" onAction="#btnCustomerOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Customer">
+      <JFXButton layoutX="266.0" layoutY="380.0" onAction="#btnCustomerOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Customer">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="366.0" layoutY="203.0" onAction="#btnItemOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Item">
+      <JFXButton layoutX="478.0" layoutY="380.0" onAction="#btnItemOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Item">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="366.0" layoutY="288.0" onAction="#btnOrderDetailsOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order Details">
+      <JFXButton layoutX="691.0" layoutY="380.0" onAction="#btnOrderDetailsOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order Details">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#070707" height="363.0" layoutX="38.0" layoutY="22.0" opacity="0.73" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#070707" height="221.0" layoutX="38.0" layoutY="22.0" opacity="0.73" stroke="BLACK" strokeType="INSIDE" width="228.0" />
       <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="108.0" layoutY="34.0">
          <image>
             <Image url="@../img/clothes_shop.png" />
@@ -51,12 +51,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblDate" layoutX="60.0" layoutY="321.0" prefHeight="30.0" prefWidth="157.0" text="yyyy-DD-mm" textFill="WHITE">
+      <Label fx:id="lblDate" layoutX="45.0" layoutY="170.0" prefHeight="30.0" prefWidth="157.0" text="yyyy-DD-mm" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblTime" layoutX="93.0" layoutY="351.0" text="00.00.00" textFill="WHITE">
+      <Label fx:id="lblTime" layoutX="78.0" layoutY="200.0" text="00.00.00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

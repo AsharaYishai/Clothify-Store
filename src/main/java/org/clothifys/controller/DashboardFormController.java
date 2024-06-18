@@ -15,7 +15,7 @@ public class DashboardFormController {
     public Label lblTime;
 
     public void btnOrderOnAction(ActionEvent actionEvent) throws IOException {
-        URL resource = this.getClass().getResource("");
+        URL resource = this.getClass().getResource("view/plac_order_form.fxml");
 
         assert resource != null;
 
