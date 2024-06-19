@@ -1,8 +1,11 @@
 package org.clothifys.db;
 
+import lombok.Getter;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 public class DBConnection {
     private static DBConnection instance ;
@@ -17,8 +20,9 @@ public class DBConnection {
         return connection;
     }
 
-    public static DBConnection getInstance() throws SQLException, ClassNotFoundException {
-        if (null==instance){
+
+    public static DBConnection getInstance() throws ClassNotFoundException, SQLException {
+        if (instance==null){
             return instance=new DBConnection();
         }
         return instance;
