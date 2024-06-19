@@ -26,7 +26,7 @@ public class DashboardFormController {
     }
 
     public void btnCustomerOnAction(ActionEvent actionEvent) throws IOException {
-        URL resource = this.getClass().getResource("");
+        URL resource = this.getClass().getResource("view/customer_registration_form.fxml");
 
         assert resource != null;
 
@@ -36,7 +36,7 @@ public class DashboardFormController {
     }
 
     public void btnItemOnAction(ActionEvent actionEvent) throws IOException {
-        URL resource = this.getClass().getResource("");
+        URL resource = this.getClass().getResource("view/add_item_form.fxml");
 
         assert resource != null;
 
