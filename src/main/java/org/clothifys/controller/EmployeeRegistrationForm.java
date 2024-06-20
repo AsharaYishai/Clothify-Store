@@ -1,9 +1,15 @@
 package org.clothifys.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class EmployeeRegistrationForm {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class EmployeeRegistrationForm implements Initializable {
     public DatePicker dateDob;
     public TextField txtContactNo;
     public TextField txtEmail;
@@ -22,6 +28,20 @@ public class EmployeeRegistrationForm {
     public TableColumn colDob;
     public TableColumn colAddress;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        LoadDropMenu();
+    }
+
+    private void LoadDropMenu() {
+        ObservableList<Object> items = FXCollections.observableArrayList();
+        items.add("MRS");
+        items.add("MR");
+        items.add("MS");
+        items.add("MISS");
+        cmbTitle.setItems(items);
+    }
+
     public void btnAddEmployeeOnAction(ActionEvent actionEvent) {
     }
 
@@ -33,4 +53,6 @@ public class EmployeeRegistrationForm {
 
     public void btnClearOnAction(ActionEvent actionEvent) {
     }
+
+
 }

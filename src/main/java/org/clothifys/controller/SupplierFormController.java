@@ -1,12 +1,18 @@
 package org.clothifys.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class SupplierFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SupplierFormController implements Initializable {
     public TextField txtContactNo;
     public TextField txtEmail;
     public TextField txtSupplierId;
@@ -26,6 +32,20 @@ public class SupplierFormController {
     public TableColumn colDescription;
     public TableColumn colQty;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        LoadDropMenu();
+    }
+
+    private void LoadDropMenu() {
+        ObservableList<Object> items = FXCollections.observableArrayList();
+        items.add("MRS");
+        items.add("MR");
+        items.add("MS");
+        items.add("MISS");
+        cmbTitle.setItems(items);
+    }
+
     public void btnAddSupplierOnAction(ActionEvent actionEvent) {
     }
 
@@ -37,4 +57,6 @@ public class SupplierFormController {
 
     public void btnClearOnAction(ActionEvent actionEvent) {
     }
+
+
 }
