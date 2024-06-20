@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="506.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.SupplierFormController">
+<AnchorPane  fx:id="LodeFormContent" prefHeight="506.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.SupplierFormController">
    <children>
       <ImageView fitHeight="647.0" fitWidth="916.0" layoutX="-2.0" layoutY="-4.0">
          <image>
@@ -103,5 +104,10 @@
             <TableColumn fx:id="colQty" prefWidth="81.0" text="QTY" />
         </columns>
       </TableView>
+      <Button layoutX="826.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #68065b;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

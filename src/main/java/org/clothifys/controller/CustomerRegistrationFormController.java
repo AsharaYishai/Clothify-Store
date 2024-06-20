@@ -5,11 +5,15 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import org.clothifys.db.DBConnection;
 import org.clothifys.entity.Customer;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +46,7 @@ public class CustomerRegistrationFormController  implements Initializable {
     public TextField txtBankAccNo;
     public TextField txtName;
     public ComboBox cmbTitle;
+    public AnchorPane LodeFormContent;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,5 +112,23 @@ public class CustomerRegistrationFormController  implements Initializable {
     public void btnClearOnAction(ActionEvent actionEvent) {
     }
 
-   
+
+    public void btnBackOnAction(ActionEvent actionEvent) {
+        try {
+            URL resource = this.getClass().getResource("/view/dash_board_form.fxml");
+            if (resource == null) {
+                throw new IllegalArgumentException("FXML file not found");
+            }
+            FXMLLoader loader = new FXMLLoader(resource);
+            Parent load = loader.load();
+            LodeFormContent.getChildren().clear();
+            LodeFormContent.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle IOException (e.g., show an alert to the user)
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            // Handle IllegalArgumentException (e.g., show an alert to the user)
+        }
+    }
 }
