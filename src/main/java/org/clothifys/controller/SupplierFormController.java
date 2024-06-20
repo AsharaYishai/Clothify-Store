@@ -61,7 +61,9 @@ public class SupplierFormController implements Initializable {
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
+
     }
+
 
 
     public void btnBackOnAction(ActionEvent actionEvent) {
