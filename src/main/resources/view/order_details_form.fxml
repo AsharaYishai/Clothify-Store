@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="623.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.OrderDetailsFormController">
+   <children>
+      <ImageView fitHeight="623.0" fitWidth="861.0" layoutX="-3.0">
+         <image>
+            <Image url="@../img/img.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141414" height="54.0" layoutY="28.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="858.0" />
+      <Label layoutX="382.0" layoutY="31.0" text="Order Details" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" height="500.0" layoutX="27.0" layoutY="109.0" opacity="0.74" stroke="BLACK" strokeType="INSIDE" width="773.0" />
+      <TableView fx:id="tblCustomer" layoutX="47.0" layoutY="169.0" prefHeight="200.0" prefWidth="713.0">
+        <columns>
+          <TableColumn fx:id="colCustomerID" prefWidth="75.0" text="CustomerID" />
+          <TableColumn fx:id="ColCustomerName" prefWidth="108.0" text="Customer Name" />
+            <TableColumn fx:id="ColContact" prefWidth="112.0" text="Conatct" />
+            <TableColumn fx:id="colEmail" prefWidth="123.0" text="Email" />
+            <TableColumn fx:id="colBankName" prefWidth="143.0" text="Bank Name" />
+            <TableColumn fx:id="colBankAccNo" prefWidth="151.0" text="Bank Acc No" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblItem" layoutX="49.0" layoutY="391.0" prefHeight="200.0" prefWidth="713.0">
+         <columns>
+            <TableColumn fx:id="colItemCode" prefWidth="75.0" text="Item Code" />
+            <TableColumn fx:id="colDescription" prefWidth="148.0" text="Description" />
+            <TableColumn fx:id="colQty" prefWidth="99.0" text="QTY" />
+            <TableColumn fx:id="colDiscount" prefWidth="133.0" text="Discount" />
+            <TableColumn fx:id="colSize" prefWidth="112.0" text="Size" />
+            <TableColumn fx:id="colAmount" prefWidth="144.0" text="Amount" />
+         </columns>
+      </TableView>
+      <Label layoutX="49.0" layoutY="121.0" prefHeight="32.0" prefWidth="128.0" text="Order ID    :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtOrderId" layoutX="177.0" layoutY="125.0" prefHeight="25.0" prefWidth="159.0" />
+      <JFXButton layoutX="356.0" layoutY="125.0" onAction="#btnViewOnAction" prefHeight="25.0" prefWidth="62.0" style="-fx-background-color: #0900ff;" text="View" textFill="#fefeff">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

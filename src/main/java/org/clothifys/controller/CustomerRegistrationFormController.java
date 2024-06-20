@@ -77,7 +77,7 @@ public class CustomerRegistrationFormController  implements Initializable {
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement psTm = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement psTm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?,?,?,?,?,?,?)");
             psTm.setString(1,customer.getCustomerId());
             psTm.setString(2,customer.getName());
             psTm.setString(3,customer.getTitle());
