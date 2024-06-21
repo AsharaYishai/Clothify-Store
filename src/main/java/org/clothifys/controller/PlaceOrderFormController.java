@@ -38,6 +38,7 @@ public class PlaceOrderFormController {
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
+
     }
 
     public void btnBackOnAction(ActionEvent actionEvent) {

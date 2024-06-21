@@ -107,9 +107,20 @@ public class CustomerRegistrationFormController  implements Initializable {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
+        txtCustomerId.setText("");
+        txtName.setText("");
+        txtAddress.setText("");
+        txtNic.setText("");
+        txtBankAccNo.setText("");
+        txtEmail.setText("");
+        txtContactNo.setText("");
+        txtBankName.setText("");
+        cmbTitle.setValue(null);
+        dateDob.setValue(null);
     }
 
 

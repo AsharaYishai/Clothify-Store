@@ -61,6 +61,12 @@ public class SupplierFormController implements Initializable {
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
+        txtSupplierId.setText("");
+        txtName.setText("");
+        txtAddress.setText("");
+        txtCompany.setText("");
+        txtEmail.setText("");
+        txtContactNo.setText("");
 
     }
 

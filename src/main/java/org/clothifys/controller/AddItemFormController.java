@@ -39,6 +39,13 @@ public class AddItemFormController {
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
+        txtItemCode.setText("");
+        txtDescription.setText("");
+        txtQty.setText("");
+        txtSize.setText("");
+        txtBuyingPrice.setText("");
+        txtSellingPrice.setText("");
+        txtSupplierName.setText("");
     }
 
     public void btnBackOnAction(ActionEvent actionEvent) {

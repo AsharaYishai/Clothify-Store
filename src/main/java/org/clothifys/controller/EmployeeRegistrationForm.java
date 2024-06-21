@@ -57,6 +57,12 @@ public class EmployeeRegistrationForm implements Initializable {
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
+        txtCustomerId.setText("");
+        txtName.setText("");
+        txtAddress.setText("");
+        txtNic.setText("");
+        txtEmail.setText("");
+        txtContactNo.setText("");
     }
 
 
