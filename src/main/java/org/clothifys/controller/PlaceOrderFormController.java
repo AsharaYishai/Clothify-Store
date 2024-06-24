@@ -1,17 +1,26 @@
 package org.clothifys.controller;
 
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.ResourceBundle;
 
-public class PlaceOrderFormController {
+public class PlaceOrderFormController implements Initializable {
 
     public JFXTextField txtCustomerName;
     public JFXTextField txtCustomerAddress;
@@ -30,6 +39,8 @@ public class PlaceOrderFormController {
     public TableColumn colUnitPrice;
     public TableColumn colDiscount;
     public AnchorPane LodeFormContent;
+    public Label lblTime;
+    public Label lblDate;
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
     }
@@ -58,5 +69,26 @@ public class PlaceOrderFormController {
             e.printStackTrace();
             // Handle IllegalArgumentException (e.g., show an alert to the user)
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDateAndTime();
+    }
+
+    private void loadDateAndTime() {
+        Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        lblDate.setText(f.format(date));
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO,e->{
+            LocalTime time = LocalTime.now();
+            lblTime.setText(time.getHour()+" : "+ time.getMinute()+" : "+ time.getSecond());
+
+        }),
+            new KeyFrame(Duration.seconds(1))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 }
