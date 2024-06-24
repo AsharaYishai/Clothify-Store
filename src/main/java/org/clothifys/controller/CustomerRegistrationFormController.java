@@ -179,8 +179,23 @@ public class CustomerRegistrationFormController  implements Initializable {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+        try {
+            boolean execute = DBConnection.getInstance().getConnection().createStatement().execute("DELETE FROM Customer WHERE CustId='" + txtCustomerId.getText() + "'");
+            System.out.println(execute);
+            loadCustomers();
+            loadTable();
+            if (execute){
+                System.out.println("Customer not Deleted ");
+            }else {
+                System.out.println("Customer Deleted");
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
     }
+
 
     public void btnClearOnAction(ActionEvent actionEvent) {
         txtCustomerId.setText("");
