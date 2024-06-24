@@ -1,4 +1,4 @@
-package org.clothifys.entity;
+package org.clothifys.dto.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Customer {
+public class CustomerTable {
     private String customerId;
     private String title;
     private String name;
@@ -23,7 +23,4 @@ public class Customer {
     private String contact;
     private String bankName;
     private String bankAccountNo;
-
-
-
 }

@@ -9,18 +9,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import org.clothifys.db.DBConnection;
+import org.clothifys.dto.tm.CustomerTable;
 import org.clothifys.entity.Customer;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CustomerRegistrationFormController  implements Initializable {
@@ -47,10 +52,72 @@ public class CustomerRegistrationFormController  implements Initializable {
     public TextField txtName;
     public ComboBox cmbTitle;
     public AnchorPane LodeFormContent;
+    public TableColumn colBankName;
+
+    private List<Customer> customerList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colNic.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        colBankName.setCellValueFactory(new PropertyValueFactory<>("bankName"));
+        colBankAccNo.setCellValueFactory(new PropertyValueFactory<>("bankAccountNo"));
         LoadDropMenu();
+        loadCustomers();
+        loadTable();
+
+    }
+
+    private void loadTable(){
+        ObservableList<CustomerTable> customerTable = FXCollections.observableArrayList();
+
+        customerList.forEach(customer -> {
+            CustomerTable customerTable1 = new CustomerTable(
+                    customer.getCustomerId(),
+                    customer.getTitle(),
+                    customer.getName(),
+                    customer.getDob(),
+                    customer.getNic(),
+                    customer.getAddress(),
+                    customer.getEmail(),
+                    customer.getContact(),
+                    customer.getBankName(),
+                    customer.getBankAccountNo()
+            );
+            customerTable.add(customerTable1);
+        });
+        tblCustomer.setItems(customerTable);
+    }
+
+    private void loadCustomers() {
+        customerList = new ArrayList<>();
+        try {
+            ResultSet resultSet = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM Customer");
+            while (resultSet.next()){
+                Customer customer = new Customer(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(4).toLocalDate(),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10)
+                );
+                System.out.println(customer);
+                customerList.add(customer);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void LoadDropMenu() {
@@ -67,34 +134,39 @@ public class CustomerRegistrationFormController  implements Initializable {
         Date date = format.parse(dateDob.getValue().toString());
         Customer customer = new Customer(
                 txtCustomerId.getText(),
-                txtName.getText(),
                 cmbTitle.getValue().toString(),
-                txtAddress.getText(),
+                txtName.getText(),
+                dateDob.getValue(),
                 txtNic.getText(),
-                date,
+                txtAddress.getText(),
                 txtEmail.getText(),
+                txtContactNo.getText(),
                 txtBankName.getText(),
-                txtBankAccNo.getText(),
-                txtContactNo.getText()
+                txtBankAccNo.getText()
+
         );
 
         System.out.println(customer);
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement psTm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement psTm = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?,?,?,?)");
             psTm.setString(1,customer.getCustomerId());
-            psTm.setString(2,customer.getName());
-            psTm.setString(3,customer.getTitle());
-            psTm.setString(4, customer.getAddress());
+            psTm.setString(2,customer.getTitle());
+            psTm.setString(3,customer.getName());
+            psTm.setObject(4,customer.getDob());
             psTm.setString(5,customer.getNic());
-            psTm.setObject(6,customer.getDob());
+            psTm.setString(6,customer.getAddress());
             psTm.setString(7,customer.getEmail());
-            psTm.setString(8,customer.getBankName());
-            psTm.setString(9,customer.getBankAccountNo());
-            psTm.setString(10,customer.getContact());
+            psTm.setString(8,customer.getContact());
+            psTm.setString(9,customer.getBankName());
+            psTm.setString(10,customer.getBankAccountNo());
+
 
             psTm.execute();
+
+            loadCustomers();
+            loadTable();
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -140,6 +212,44 @@ public class CustomerRegistrationFormController  implements Initializable {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             // Handle IllegalArgumentException (e.g., show an alert to the user)
+        }
+    }
+
+    public void btnSearchOnAction(ActionEvent actionEvent) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Customer WHERE CustId='"+txtCustomerId.getText()+"'");
+           while (resultSet.next()) {
+               Customer customer = new Customer(
+                       resultSet.getString(1),
+                       resultSet.getString(2),
+                       resultSet.getString(3),
+                       resultSet.getDate(4).toLocalDate(),
+                       resultSet.getString(5),
+                       resultSet.getString(6),
+                       resultSet.getString(7),
+                       resultSet.getString(8),
+                       resultSet.getString(9),
+                       resultSet.getString(10)
+               );
+               System.out.println(customer);
+
+               Date date = format.parse(customer.getDob().toString());
+
+               cmbTitle.setValue(customer.getTitle());
+               txtName.setText(customer.getName());
+               dateDob.setValue(customer.getDob());
+               txtNic.setText(customer.getNic());
+               txtAddress.setText(customer.getAddress());
+               txtEmail.setText(customer.getEmail());
+               txtContactNo.setText(customer.getContact());
+               txtBankName.setText(customer.getBankName());
+               txtBankAccNo.setText(customer.getBankAccountNo());
+            }
+        } catch (ClassNotFoundException | SQLException | ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 }
