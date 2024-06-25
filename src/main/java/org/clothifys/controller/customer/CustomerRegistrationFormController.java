@@ -123,6 +123,7 @@ public class CustomerRegistrationFormController  implements Initializable {
             new  Alert(Alert.AlertType.CONFIRMATION,"Customer not Added !").show();
         }else {
             new  Alert(Alert.AlertType.CONFIRMATION,"Customer  Added !").show();
+
         }
 
     }

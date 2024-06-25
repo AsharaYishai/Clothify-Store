@@ -1,4 +1,4 @@
-package org.clothifys.controller;
+package org.clothifys.controller.employee;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

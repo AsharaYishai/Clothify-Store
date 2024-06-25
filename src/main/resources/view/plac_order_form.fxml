@@ -181,7 +181,7 @@
          </font>
       </Label>
       <JFXTextField focusColor="WHITE" layoutX="368.0" layoutY="509.0" prefHeight="25.0" prefWidth="123.0" unFocusColor="WHITE" />
-      <TextField fx:id="txtQtyForCustomer" layoutX="368.0" layoutY="509.0" prefHeight="25.0" prefWidth="123.0" promptText="QTY" />
+      <TextField fx:id="txtQtyForCustomer" layoutX="368.0" layoutY="509.0" onAction="#txtAddToCartOnAction" prefHeight="25.0" prefWidth="123.0" promptText="QTY" />
       <Label layoutX="41.0" layoutY="576.0" prefHeight="26.0" prefWidth="129.0" text="Net Total          :" textFill="#030303">
          <font>
             <Font name="System Bold" size="17.0" />

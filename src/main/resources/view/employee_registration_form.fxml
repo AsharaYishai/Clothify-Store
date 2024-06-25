@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="LodeFormContent" prefHeight="475.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.EmployeeRegistrationForm">
+<AnchorPane  fx:id="LodeFormContent" prefHeight="475.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.employee.EmployeeRegistrationForm">
    <children>
       <ImageView fitHeight="619.0" fitWidth="934.0">
          <image>

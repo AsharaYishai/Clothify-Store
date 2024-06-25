@@ -102,6 +102,7 @@ public class PlaceOrderFormController implements Initializable {
     }
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
+
     }
 
     ObservableList<CartTbl> cartList = FXCollections.observableArrayList();
@@ -252,5 +253,9 @@ public class PlaceOrderFormController implements Initializable {
             ttl+=cartObj.getTotal();
         }
         lblNetTotal.setText(String.valueOf(ttl)+"/=");
+    }
+
+    public void txtAddToCartOnAction(ActionEvent actionEvent) {
+        btnAddToCartOnAction(actionEvent);
     }
 }
