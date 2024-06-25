@@ -11,11 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import org.clothifys.controller.customer.CustomerController;
 import org.clothifys.controller.item.ItemController;
 import org.clothifys.db.DBConnection;
+import org.clothifys.dto.tm.CartTbl;
 import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
 
@@ -69,11 +71,62 @@ public class PlaceOrderFormController implements Initializable {
     public TextField txtQty2;
     public Label lblOrderId;
     public TableView tblCart;
+    public TextField txtQtyForCustomer;
+    public Label lblUnitPrice;
+    public TableColumn colDescription;
+    public TableColumn colTotal;
+    public Label lblNetTotal;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDateAndTime();
+        loadCustomerIDs();
+        loadItemCodes();
+        generateOrderId();
+
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        cmdCustomerIds.getSelectionModel().selectedItemProperty().addListener((observable,aldValue,newValue) -> {
+            System.out.println(newValue);
+            setCustomerDataForLbl((String)newValue);
+        });
+
+        cmbItemCode.getSelectionModel().selectedItemProperty().addListener((observable,aldValue,newValue) ->{
+            System.out.println(newValue);
+            setItemDataForLbl((String)newValue);
+        });
+    }
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
     }
 
+    ObservableList<CartTbl> cartList = FXCollections.observableArrayList();
+
     public void btnAddToCartOnAction(ActionEvent actionEvent) {
+
+        String itemCode = (String)cmbItemCode.getValue();
+        String desc = lblDescription.getText();
+        Integer qty = Integer.parseInt(txtQtyForCustomer.getText());
+        Double unitPrice = Double.valueOf(lblUnitPrice.getText());
+        Double total = qty*unitPrice;
+
+        CartTbl cartTbl = new CartTbl(itemCode, desc, qty, unitPrice, total);
+
+        int qtyStock = Integer.parseInt(lblQty.getText());
+        if(qtyStock<qty){
+            new Alert(Alert.AlertType.WARNING,"Invalid qty").show();
+            return;
+        }
+
+        cartList.add(cartTbl);
+        tblCart.setItems(cartList);
+
+        calcNetTotal();
+
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
@@ -99,23 +152,7 @@ public class PlaceOrderFormController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDateAndTime();
-        loadCustomerIDs();
-        loadItemCodes();
-        generateOrderId();
 
-        cmdCustomerIds.getSelectionModel().selectedItemProperty().addListener((observable,aldValue,newValue) -> {
-            System.out.println(newValue);
-            setCustomerDataForLbl((String)newValue);
-        });
-
-        cmbItemCode.getSelectionModel().selectedItemProperty().addListener((observable,aldValue,newValue) ->{
-            System.out.println(newValue);
-            setItemDataForLbl((String)newValue);
-        });
-    }
 
     private void setItemDataForLbl(String itemCode) {
         Item item = ItemController.getInstance().searchItem(itemCode);
@@ -209,4 +246,11 @@ public class PlaceOrderFormController implements Initializable {
         }
     }
 
+    public void calcNetTotal(){
+        double ttl=0;
+        for (CartTbl cartObj : cartList){
+            ttl+=cartObj.getTotal();
+        }
+        lblNetTotal.setText(String.valueOf(ttl)+"/=");
+    }
 }
