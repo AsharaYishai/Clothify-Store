@@ -27,6 +27,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
@@ -103,6 +105,17 @@ public class PlaceOrderFormController implements Initializable {
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
 
+        try {
+            String orderId = lblOrderId.getText();
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date orderDate = format.parse(lblDate.getText());
+            String customerIds = cmdCustomerIds.getValue().toString();
+
+
+
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     ObservableList<CartTbl> cartList = FXCollections.observableArrayList();
