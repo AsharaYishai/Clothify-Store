@@ -1,8 +1,9 @@
-package org.clothifys.controller;
+package org.clothifys.controller.item;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,8 +11,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AddItemFormController {
+public class AddItemFormController implements Initializable {
     public JFXTextField txtItemCode;
     public JFXTextField txtDescription;
     public JFXTextField txtSellingPrice;
@@ -65,5 +67,10 @@ public class AddItemFormController {
             e.printStackTrace();
             // Handle IllegalArgumentException (e.g., show an alert to the user)
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

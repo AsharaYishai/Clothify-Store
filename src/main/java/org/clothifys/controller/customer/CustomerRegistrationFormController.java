@@ -1,7 +1,5 @@
-package org.clothifys.controller;
+package org.clothifys.controller.customer;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,9 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CustomerRegistrationFormController  implements Initializable {
@@ -54,7 +50,6 @@ public class CustomerRegistrationFormController  implements Initializable {
     public AnchorPane LodeFormContent;
     public TableColumn colBankName;
 
-    private List<Customer> customerList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,15 +64,14 @@ public class CustomerRegistrationFormController  implements Initializable {
         colBankName.setCellValueFactory(new PropertyValueFactory<>("bankName"));
         colBankAccNo.setCellValueFactory(new PropertyValueFactory<>("bankAccountNo"));
         LoadDropMenu();
-        loadCustomers();
         loadTable();
 
     }
 
     private void loadTable(){
         ObservableList<CustomerTable> customerTable = FXCollections.observableArrayList();
-
-        customerList.forEach(customer -> {
+        ObservableList<Customer> allCustomers = CustomerController.getInstance().getAllCustomers();
+        allCustomers.forEach(customer -> {
             CustomerTable customerTable1 = new CustomerTable(
                     customer.getCustomerId(),
                     customer.getTitle(),
@@ -95,30 +89,7 @@ public class CustomerRegistrationFormController  implements Initializable {
         tblCustomer.setItems(customerTable);
     }
 
-    private void loadCustomers() {
-        customerList = new ArrayList<>();
-        try {
-            ResultSet resultSet = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM Customer");
-            while (resultSet.next()){
-                Customer customer = new Customer(
-                        resultSet.getString(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getDate(4).toLocalDate(),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7),
-                        resultSet.getString(8),
-                        resultSet.getString(9),
-                        resultSet.getString(10)
-                );
-                System.out.println(customer);
-                customerList.add(customer);
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     private void LoadDropMenu() {
         ObservableList<Object> items = FXCollections.observableArrayList();
@@ -165,7 +136,6 @@ public class CustomerRegistrationFormController  implements Initializable {
 
             psTm.execute();
 
-            loadCustomers();
             loadTable();
 
         } catch (ClassNotFoundException | SQLException e) {
@@ -182,7 +152,7 @@ public class CustomerRegistrationFormController  implements Initializable {
         try {
             boolean execute = DBConnection.getInstance().getConnection().createStatement().execute("DELETE FROM Customer WHERE CustId='" + txtCustomerId.getText() + "'");
             System.out.println(execute);
-            loadCustomers();
+
             loadTable();
             if (execute){
                 System.out.println("Customer not Deleted ");
@@ -229,42 +199,9 @@ public class CustomerRegistrationFormController  implements Initializable {
             // Handle IllegalArgumentException (e.g., show an alert to the user)
         }
     }
-
     public void btnSearchOnAction(ActionEvent actionEvent) {
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Customer customer = CustomerController.getInstance().searchCustomer(txtCustomerId.getText());
 
-            Connection connection = DBConnection.getInstance().getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Customer WHERE CustId='"+txtCustomerId.getText()+"'");
-           while (resultSet.next()) {
-               Customer customer = new Customer(
-                       resultSet.getString(1),
-                       resultSet.getString(2),
-                       resultSet.getString(3),
-                       resultSet.getDate(4).toLocalDate(),
-                       resultSet.getString(5),
-                       resultSet.getString(6),
-                       resultSet.getString(7),
-                       resultSet.getString(8),
-                       resultSet.getString(9),
-                       resultSet.getString(10)
-               );
-               System.out.println(customer);
-
-               Date date = format.parse(customer.getDob().toString());
-
-               cmbTitle.setValue(customer.getTitle());
-               txtName.setText(customer.getName());
-               dateDob.setValue(customer.getDob());
-               txtNic.setText(customer.getNic());
-               txtAddress.setText(customer.getAddress());
-               txtEmail.setText(customer.getEmail());
-               txtContactNo.setText(customer.getContact());
-               txtBankName.setText(customer.getBankName());
-               txtBankAccNo.setText(customer.getBankAccountNo());
-            }
-        } catch (ClassNotFoundException | SQLException | ParseException e) {
-            throw new RuntimeException(e);
-        }
     }
+
 }
