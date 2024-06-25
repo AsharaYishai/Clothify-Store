@@ -2,6 +2,7 @@ package org.clothifys.controller.customer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.clothifys.crudUtil.CrudUtil;
 import org.clothifys.db.DBConnection;
 import org.clothifys.entity.Customer;
 
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+
 
 public class CustomerController implements CustomerService{
     private static CustomerController instance;
@@ -58,7 +61,7 @@ public class CustomerController implements CustomerService{
 
     public ObservableList<Customer> getAllCustomers() {
         try {
-            ResultSet resultSet = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM Customer");
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Customer");
 
             ObservableList<Customer> listTable = FXCollections.observableArrayList();
             while (resultSet.next()){
@@ -86,27 +89,26 @@ public class CustomerController implements CustomerService{
 
     public boolean addCustomer(Customer customer){
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement psTm = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?,?,?,?)");
-            psTm.setString(1,customer.getCustomerId());
-            psTm.setString(2,customer.getTitle());
-            psTm.setString(3,customer.getName());
-            psTm.setObject(4,customer.getDob());
-            psTm.setString(5,customer.getNic());
-            psTm.setString(6,customer.getAddress());
-            psTm.setString(7,customer.getEmail());
-            psTm.setString(8,customer.getContact());
-            psTm.setString(9,customer.getBankName());
-            psTm.setString(10,customer.getBankAccountNo());
-
-
-            return psTm.execute();
-
+            String SQL = "INSERT INTO Customer VALUES (?,?,?,?,?,?,?,?,?,?)";
+            CrudUtil.execute(
+                    SQL,
+                    customer.getCustomerId(),
+                    customer.getTitle(),
+                    customer.getName(),
+                    customer.getDob(),
+                    customer.getNic(),
+                    customer.getAddress(),
+                    customer.getEmail(),
+                    customer.getContact(),
+                    customer.getBankName(),
+                    customer.getBankAccountNo()
+                    );
 
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
+        return false;
     }
 
 

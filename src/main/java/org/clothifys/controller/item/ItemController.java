@@ -3,6 +3,7 @@ package org.clothifys.controller.item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.clothifys.controller.customer.CustomerController;
+import org.clothifys.crudUtil.CrudUtil;
 import org.clothifys.db.DBConnection;
 import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
@@ -26,7 +27,7 @@ public class ItemController {
 
     public ObservableList<Item> getAllItems() {
         try {
-            ResultSet resultSet = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM Item");
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Item");
 
             ObservableList<Item> listTable = FXCollections.observableArrayList();
             while (resultSet.next()){
