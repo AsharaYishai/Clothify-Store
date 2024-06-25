@@ -117,30 +117,14 @@ public class CustomerRegistrationFormController  implements Initializable {
 
         );
 
-        System.out.println(customer);
+        boolean b = CustomerController.getInstance().addCustomer(customer);
 
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement psTm = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?,?,?,?,?,?)");
-            psTm.setString(1,customer.getCustomerId());
-            psTm.setString(2,customer.getTitle());
-            psTm.setString(3,customer.getName());
-            psTm.setObject(4,customer.getDob());
-            psTm.setString(5,customer.getNic());
-            psTm.setString(6,customer.getAddress());
-            psTm.setString(7,customer.getEmail());
-            psTm.setString(8,customer.getContact());
-            psTm.setString(9,customer.getBankName());
-            psTm.setString(10,customer.getBankAccountNo());
-
-
-            psTm.execute();
-
-            loadTable();
-
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+        if(b){
+            new  Alert(Alert.AlertType.CONFIRMATION,"Customer not Added !").show();
+        }else {
+            new  Alert(Alert.AlertType.CONFIRMATION,"Customer  Added !").show();
         }
+
     }
 
 

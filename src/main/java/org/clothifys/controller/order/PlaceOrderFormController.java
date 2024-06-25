@@ -10,10 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import org.clothifys.controller.customer.CustomerController;
@@ -69,6 +66,9 @@ public class PlaceOrderFormController implements Initializable {
     public Label lblSellingPrice;
     public Label lblDescription;
     public Label lblOrderId1;
+    public TextField txtQty2;
+    public Label lblOrderId;
+    public TableView tblCart;
 
     public void btnPlaceOrderOnAction(ActionEvent actionEvent) {
     }
@@ -104,6 +104,7 @@ public class PlaceOrderFormController implements Initializable {
         loadDateAndTime();
         loadCustomerIDs();
         loadItemCodes();
+        generateOrderId();
 
         cmdCustomerIds.getSelectionModel().selectedItemProperty().addListener((observable,aldValue,newValue) -> {
             System.out.println(newValue);
