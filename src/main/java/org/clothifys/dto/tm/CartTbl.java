@@ -16,5 +16,6 @@ public class CartTbl {
     private Integer qty;
     private Double unitPrice;
     private Double total;
+    private  Double discount;
 
 }

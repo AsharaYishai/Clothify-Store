@@ -18,8 +18,11 @@ import org.clothifys.controller.customer.CustomerController;
 import org.clothifys.controller.item.ItemController;
 import org.clothifys.db.DBConnection;
 import org.clothifys.dto.tm.CartTbl;
+import org.clothifys.dto.tm.Order;
+import org.clothifys.dto.tm.OrderDetail;
 import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
+import org.clothifys.entity.OrderDetails;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +34,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -111,7 +116,18 @@ public class PlaceOrderFormController implements Initializable {
             Date orderDate = format.parse(lblDate.getText());
             String customerIds = cmdCustomerIds.getValue().toString();
 
+            List<OrderDetail> orderDetailList = new ArrayList<>();
 
+            for (CartTbl cartTbl : cartList) {
+                String oID = lblOrderId.getText();
+                String itemCode = cartTbl.getItemCode();
+                Integer qty = cartTbl.getQty();
+                Double discount = cartTbl.getDiscount();
+                orderDetailList.add(new OrderDetail(oID, itemCode, qty, discount));
+            }
+
+            Order order = new Order(orderId, orderDate, customerIds, orderDetailList);
+            System.out.println(order);
 
         } catch (ParseException e) {
             throw new RuntimeException(e);
@@ -128,7 +144,7 @@ public class PlaceOrderFormController implements Initializable {
         Double unitPrice = Double.valueOf(lblUnitPrice.getText());
         Double total = qty*unitPrice;
 
-        CartTbl cartTbl = new CartTbl(itemCode, desc, qty, unitPrice, total);
+        CartTbl cartTbl = new CartTbl(itemCode, desc, qty, unitPrice, total,0.0);
 
         int qtyStock = Integer.parseInt(lblQty.getText());
         if(qtyStock<qty){

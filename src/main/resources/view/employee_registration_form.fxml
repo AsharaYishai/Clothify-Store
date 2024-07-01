@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="LodeFormContent" prefHeight="475.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.employee.EmployeeRegistrationForm">
+<AnchorPane fx:id="LodeFormContent" prefHeight="475.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.employee.EmployeeRegistrationForm">
    <children>
       <ImageView fitHeight="619.0" fitWidth="934.0">
          <image>
@@ -27,7 +27,7 @@
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#111111" height="282.0" layoutX="14.0" layoutY="114.0" opacity="0.73" stroke="BLACK" strokeType="INSIDE" width="877.0" />
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#111111" height="282.0" layoutX="14.0" layoutY="125.0" opacity="0.73" stroke="BLACK" strokeType="INSIDE" width="877.0" />
       <Label layoutX="42.0" layoutY="149.0" text="Employee ID      :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
