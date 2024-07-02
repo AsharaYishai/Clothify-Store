@@ -5,12 +5,14 @@ import javafx.collections.ObservableList;
 import org.clothifys.controller.customer.CustomerController;
 import org.clothifys.crudUtil.CrudUtil;
 import org.clothifys.db.DBConnection;
+import org.clothifys.dto.tm.OrderDetail;
 import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ItemController {
 
@@ -75,5 +77,26 @@ public class ItemController {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public boolean updateStock(List<OrderDetail> orderDetailList) {
+        boolean isUpdate = false;
+        for (OrderDetail orderDetail : orderDetailList){
+          isUpdate = updateStock(orderDetail);
+       }
+        if(isUpdate) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateStock(OrderDetail orderDetail) {
+
+        try {
+            Object isUpdate = CrudUtil.execute("UPDATE item SET QtyOnHand=QtyOnHand-? WHERE ItemCode = ?", orderDetail.getQty(), orderDetail.getItemCode());
+            return (Boolean) isUpdate;
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

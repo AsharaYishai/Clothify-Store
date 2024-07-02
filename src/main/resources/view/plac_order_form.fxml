@@ -192,5 +192,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="797.0" layoutY="569.0" mnemonicParsing="false" onAction="#btnCommitOnAction" prefHeight="30.0" prefWidth="59.0" text="Commit" />
+      <Button layoutX="699.0" layoutY="569.0" mnemonicParsing="false" onAction="#btnRollBackOnAction" prefHeight="30.0" prefWidth="79.0" text="Roll Back" />
    </children>
 </AnchorPane>

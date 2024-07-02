@@ -24,6 +24,7 @@ import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
 import org.clothifys.entity.OrderDetails;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -127,9 +128,18 @@ public class PlaceOrderFormController implements Initializable {
             }
 
             Order order = new Order(orderId, orderDate, customerIds, orderDetailList);
+            Boolean isOrderPlace = OrderController.getInstance().placeOrder(order);
+            if (isOrderPlace){
+                generateOrderId();
+                new Alert(Alert.AlertType.INFORMATION,"Order Place !").show();
+            }
             System.out.println(order);
 
         } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -286,5 +296,23 @@ public class PlaceOrderFormController implements Initializable {
 
     public void txtAddToCartOnAction(ActionEvent actionEvent) {
         btnAddToCartOnAction(actionEvent);
+    }
+
+    public void btnCommitOnAction(ActionEvent actionEvent) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            connection.setAutoCommit(true);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void btnRollBackOnAction(ActionEvent actionEvent) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            connection.rollback();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
