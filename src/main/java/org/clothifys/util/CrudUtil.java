@@ -1,4 +1,4 @@
-package org.clothifys.crudUtil;
+package org.clothifys.util;
 
 import org.clothifys.db.DBConnection;
 

@@ -1,6 +1,6 @@
 package org.clothifys.controller.order;
 
-import org.clothifys.crudUtil.CrudUtil;
+import org.clothifys.util.CrudUtil;
 import org.clothifys.dto.tm.OrderDetail;
 
 import java.sql.SQLException;

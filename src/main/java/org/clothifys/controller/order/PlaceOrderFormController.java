@@ -135,11 +135,7 @@ public class PlaceOrderFormController implements Initializable {
             }
             System.out.println(order);
 
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (ParseException | SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

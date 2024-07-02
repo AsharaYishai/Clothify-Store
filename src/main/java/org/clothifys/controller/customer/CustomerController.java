@@ -2,18 +2,12 @@ package org.clothifys.controller.customer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.clothifys.crudUtil.CrudUtil;
-import org.clothifys.db.DBConnection;
+import org.clothifys.util.CrudUtil;
 import org.clothifys.entity.Customer;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 
 public class CustomerController implements CustomerService{

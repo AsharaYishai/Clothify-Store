@@ -2,11 +2,8 @@ package org.clothifys.controller.item;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.clothifys.controller.customer.CustomerController;
-import org.clothifys.crudUtil.CrudUtil;
-import org.clothifys.db.DBConnection;
+import org.clothifys.util.CrudUtil;
 import org.clothifys.dto.tm.OrderDetail;
-import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
 
 import java.sql.PreparedStatement;
