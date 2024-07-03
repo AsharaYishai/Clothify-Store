@@ -9,15 +9,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.clothifys.bo.BoFactory;
+import org.clothifys.bo.custom.CustomerBo;
 import org.clothifys.db.DBConnection;
 import org.clothifys.dto.tm.CustomerTable;
 import org.clothifys.entity.Customer;
+import org.clothifys.util.BoType;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,6 +50,8 @@ public class CustomerRegistrationFormController  implements Initializable {
     public AnchorPane LodeFormContent;
     public TableColumn colBankName;
 
+
+    private CustomerBo customerBo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,6 +103,7 @@ public class CustomerRegistrationFormController  implements Initializable {
     }
 
     public void btnAddCustomerOnAction(ActionEvent actionEvent) throws ParseException, RuntimeException {
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = format.parse(dateDob.getValue().toString());
         Customer customer = new Customer(
@@ -117,8 +120,8 @@ public class CustomerRegistrationFormController  implements Initializable {
 
         );
 
-        boolean b = CustomerController.getInstance().addCustomer(customer);
-
+        //boolean b = CustomerController.getInstance().addCustomer(customer);
+        boolean b = customerBo.saveCustomer(customer);
         if(b){
             new  Alert(Alert.AlertType.CONFIRMATION,"Customer not Added !").show();
         }else {

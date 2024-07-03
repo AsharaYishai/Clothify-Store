@@ -22,7 +22,6 @@ import org.clothifys.dto.tm.Order;
 import org.clothifys.dto.tm.OrderDetail;
 import org.clothifys.entity.Customer;
 import org.clothifys.entity.Item;
-import org.clothifys.entity.OrderDetails;
 
 
 import java.io.IOException;
