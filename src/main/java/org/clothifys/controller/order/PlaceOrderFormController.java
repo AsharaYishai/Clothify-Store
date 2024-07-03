@@ -224,7 +224,7 @@ public class PlaceOrderFormController implements Initializable {
         ObservableList<Object> ids = FXCollections.observableArrayList();
 
         allCustomers.forEach(customer -> {
-            ids.add(customer.getCustomerId());
+            ids.add(customer.getId());
         });
         cmdCustomerIds.setItems(ids);
 

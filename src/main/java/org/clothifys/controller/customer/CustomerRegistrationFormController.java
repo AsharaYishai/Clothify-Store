@@ -75,7 +75,7 @@ public class CustomerRegistrationFormController  implements Initializable {
         ObservableList<Customer> allCustomers = CustomerController.getInstance().getAllCustomers();
         allCustomers.forEach(customer -> {
             CustomerTable customerTable1 = new CustomerTable(
-                    customer.getCustomerId(),
+                    customer.getId(),
                     customer.getTitle(),
                     customer.getName(),
                     customer.getDob(),
@@ -123,9 +123,9 @@ public class CustomerRegistrationFormController  implements Initializable {
         //boolean b = CustomerController.getInstance().addCustomer(customer);
         boolean b = customerBo.saveCustomer(customer);
         if(b){
-            new  Alert(Alert.AlertType.CONFIRMATION,"Customer not Added !").show();
-        }else {
             new  Alert(Alert.AlertType.CONFIRMATION,"Customer  Added !").show();
+        }else {
+            new  Alert(Alert.AlertType.CONFIRMATION,"Customer not Added !").show();
 
         }
 

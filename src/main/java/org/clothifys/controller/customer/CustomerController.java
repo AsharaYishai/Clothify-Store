@@ -86,7 +86,7 @@ public class CustomerController implements CustomerService{
             String SQL = "INSERT INTO Customer VALUES (?,?,?,?,?,?,?,?,?,?)";
             CrudUtil.execute(
                     SQL,
-                    customer.getCustomerId(),
+                    customer.getId(),
                     customer.getTitle(),
                     customer.getName(),
                     customer.getDob(),
