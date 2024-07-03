@@ -122,4 +122,23 @@ public class DashboardFormController implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
+
+    public void btnEmployeeOnAction(ActionEvent actionEvent) {
+        try {
+            URL resource = this.getClass().getResource("/view/employee_registration_form.fxml");
+            if (resource == null) {
+                throw new IllegalArgumentException("FXML file not found");
+            }
+            FXMLLoader loader = new FXMLLoader(resource);
+            Parent load = loader.load();
+            LodeFormContent.getChildren().clear();
+            LodeFormContent.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle IOException (e.g., show an alert to the user)
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            // Handle IllegalArgumentException (e.g., show an alert to the user)
+        }
+    }
 }

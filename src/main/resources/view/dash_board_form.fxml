@@ -11,13 +11,13 @@
 
 <AnchorPane fx:id="LodeFormContent" prefHeight="528.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.clothifys.controller.DashboardFormController">
    <children>
-      <ImageView fitHeight="528.0" fitWidth="902.0">
+      <ImageView fitHeight="528.0" fitWidth="902.0" layoutX="7.0">
          <image>
             <Image url="@../img/bg_img.jpg" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="221.0" layoutX="38.0" layoutY="294.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="849.0" />
-      <JFXButton layoutX="58.0" layoutY="380.0" onAction="#btnOrderOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order" textOverrun="CLIP">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="483.0" layoutX="355.0" layoutY="32.0" opacity="0.62" stroke="BLACK" strokeType="INSIDE" width="532.0" />
+      <JFXButton layoutX="513.0" layoutY="68.0" onAction="#btnOrderOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order" textOverrun="CLIP">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -25,17 +25,17 @@
             <Cursor fx:constant="MOVE" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="266.0" layoutY="380.0" onAction="#btnCustomerOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Customer">
+      <JFXButton layoutX="513.0" layoutY="161.0" onAction="#btnCustomerOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Customer">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="478.0" layoutY="380.0" onAction="#btnItemOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Item">
+      <JFXButton layoutX="513.0" layoutY="331.0" onAction="#btnItemOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Item">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="691.0" layoutY="380.0" onAction="#btnOrderDetailsOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order Details">
+      <JFXButton layoutX="513.0" layoutY="417.0" onAction="#btnOrderDetailsOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Order Details">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -61,5 +61,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <JFXButton layoutX="513.0" layoutY="250.0" onAction="#btnEmployeeOnAction" prefHeight="48.0" prefWidth="185.0" style="-fx-background-color: #f8f8f8;" text="Employee">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

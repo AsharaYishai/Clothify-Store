@@ -7,7 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.clothifys.controller.customer.CustomerController;
+import org.clothifys.dto.tm.CustomerTable;
+import org.clothifys.dto.tm.EmployeeTable;
+import org.clothifys.entity.Customer;
+import org.clothifys.entity.Employee;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +41,35 @@ public class EmployeeRegistrationForm implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        colName.setCellValueFactory(new PropertyValueFactory<>("empId"));
+        colTitel.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colNic.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         LoadDropMenu();
+        loadTable();
+    }
+
+    public void loadTable(){
+        ObservableList<EmployeeTable> employeeTable = FXCollections.observableArrayList();
+        ObservableList<Employee> allEmployees = EmployeeController.getInstance().getAllEmployees();
+        allEmployees.forEach(employee -> {
+            EmployeeTable employeeTable1 = new EmployeeTable(
+                    employee.getEmpId(),
+                    employee.getTitle(),
+                    employee.getName(),
+                    employee.getNic(),
+                    employee.getDob(),
+                    employee.getEmail(),
+                    employee.getContact(),
+                    employee.getAddress()
+            );
+            employeeTable.add(employeeTable1);
+        });
+        tblEmployee.setItems(employeeTable);
     }
 
     private void LoadDropMenu() {
