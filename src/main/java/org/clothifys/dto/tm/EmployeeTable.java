@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 public class EmployeeTable {
-    private String customerId;
+    private String employeeId;
     private String title;
     private String name;
     private String nic;
