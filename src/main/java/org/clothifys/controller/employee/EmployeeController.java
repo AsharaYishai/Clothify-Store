@@ -9,7 +9,7 @@ import org.clothifys.util.CrudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeController {
+public class EmployeeController implements EmployeeService{
     private static EmployeeController instance;
 
     private EmployeeController(){}
@@ -47,7 +47,7 @@ public class EmployeeController {
         }
     }
 
-    public boolean addCustomer(Employee employee){
+    public boolean addEmployee(Employee employee){
         try {
             String SQL = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?,?)";
             CrudUtil.execute(
